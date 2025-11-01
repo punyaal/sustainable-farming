@@ -1,0 +1,650 @@
+,<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checker</title>
+    <style>
+        body {
+            background: linear-gradient(
+                to right,
+                #65B741,
+                bisque,
+                #9ADE7B
+            );
+        }
+
+        .cultivator h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 3rem;
+            text-decoration: underline;
+        }
+
+        .cultivator {
+            display: inline-block;
+        }
+
+        .cultivator label {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 3rem;
+            padding: 10px;
+        }
+
+        .cultivator option {
+            font-weight: 200;
+            align-items: center;
+            text-align: center;
+        }
+
+        #district {
+            height: 50px;
+            outline: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            font-size: 1.2rem;
+            text-align: center;
+            align-items: center;
+        }
+
+        #month {
+            height: 50px;
+            outline: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            font-size: 1.2rem;
+            text-align: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .cultivator button {
+            display: flex;
+            justify-content: center;
+            background: transparent;
+            color: black;
+            font-size: 1.5rem;
+            font-weight: 500;
+            border: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-top: 2.5rem;
+            cursor: pointer;
+            padding: 10px 20px 10px;
+            transition: 0.5s linear;
+            border: 0.3rem solid black;
+        }
+
+        .cultivator button:hover {
+            background: black;
+            color: white;
+        }
+
+        #results {
+            font-size: 2.1rem;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 3rem;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <section class="cultivator" id="cultivator">
+
+            <h1>Sustainability Checker</h1>
+            <label for="district">Select District:</label>
+            <select id="district">
+                <option value="select">select </option>
+                <option value="Bangalore">Bangalore </option>
+                <option value="Mysuru">Mysuru</option>
+                <option value="Mangalore">Mangalore</option>
+                <option value="Udupi">Udupi</option>
+                <option value="Ballari">Ballari</option>
+                <!-- Add more districts... -->
+            </select>
+
+            <label for="month">Select Month:</label>
+            <select id="month">
+                <option value="select">select</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+                <!-- Add more months... -->
+            </select>
+
+            <button onclick="checkSustainability()">Check</button>
+
+            <div id="results">
+                <h2>Results:</h2>
+                <p id="bestCrop">Best Crop:</p>
+                <p id="allCrops">Available Crops:</p>
+                <p id="rainfall">Rainfall:</p>
+                <p id="soil">Soil Fertility:</p>
+                <p id="sustainability">Sustainability:</p>
+                <p id="diseaseexpected">diseaseexpected:</p>
+            </div>
+
+            <button onclick="checkWeather()">Check Weather</button>
+
+            <div id="results">
+                <!-- Display weather information here -->
+            </div>
+        </section>
+    </center>
+
+    <script>
+        function checkSustainability() {
+            var district = document.getElementById("district").value;
+            var month = document.getElementById("month").value;
+
+// Placeholder data (Replace this with actual data retrieval logic)
+var cropsData = {
+    "Bangalore": {
+        "January": {
+            "bestCrop": "Cabbage",
+            "allCrops": ["Cabbage", "Cauliflower", "Carrot"],
+            "rainfall": "0.04",
+            "soil": "Fertile"
+        },
+        "February": {
+            "bestCrop": "Potatoes",
+            "allCrops": ["Potato", "radish", "Spinach"],
+            "rainfall": "0.3%",
+            "soil": "fertile"
+        },
+        "March": {
+            "bestCrop": "tomatoes",
+            "allCrops": ["tomatoes","bell peppers","green beans"],
+            "rainfall": "0.6%",
+            "soil": "fertile"
+        },
+            "April": {
+            "bestCrop": "Cucumbers",
+            "allCrops": ["Cucumbers","watermelon"],
+            "rainfall": "1.3%",
+            "soil": "moderate"
+        },
+        "May": {
+            "bestCrop": "okra",
+            "allCrops": ["okra","brinjal","basil"],
+            "rainfall": "4.1%",
+            "soil": "moderate"
+        // Add more months' data for Mysore...
+        },
+        "June": {
+            "bestCrop": "pumpkin",
+            "allCrops": ["pumpkin","corn"],
+            "rainfall": "3.1%",
+            "soil": "moderate"
+    },
+    "July": {
+            "bestCrop": "Corriander",
+            "allCrops": ["peas","brocli","corriander"],
+            "rainfall": "4.2%",
+            "soil": "poor"
+    },
+    "August": {
+            "bestCrop": "peas",
+            "allCrops": ["peas","vegetables(tomato,brinjal)"],
+            "rainfall": "10.6%",
+            "soil ": "Decreasing"
+    },
+    "September": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "14.5%",
+            "soil": "variable"
+    },
+    "October": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "19.1%",
+            "soil": "variable"
+    },
+    "November": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "19.1%",
+            "soil": "Recovering"
+    },
+    "December": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "7.3%",
+            "soil": "variable"
+    },
+},
+        "Tumkur": {
+        "January": {
+            "bestCrop": "Cabbage",
+            "allCrops": ["Cabbage", "Cauliflower", "Carrot"],
+            "rainfall": "0.04",
+            "soil": "Fertile"
+        },
+        "February": {
+            "bestCrop": "Potatoes",
+            "allCrops": ["Potato", "radish", "Spinach"],
+            "rainfall": "0.3%",
+            "soil": "fertile"
+        },
+        "March": {
+            "bestCrop": "tomatoes",
+            "allCrops": ["tomatoes","bell peppers","green beans"],
+            "rainfall": "0.6%",
+            "soil": "fertile"
+        },
+            "April": {
+            "bestCrop": "Cucumbers",
+            "allCrops": ["Cucumbers","watermelon"],
+            "rainfall": "1.3%",
+            "soil": "moderate"
+        },
+        "May": {
+            "bestCrop": "okra",
+            "allCrops": ["okra","brinjal","basil"],
+            "rainfall": "4.1%",
+            "soil": "moderate"
+        // Add more months' data for Mysore...
+        },
+        "June": {
+            "bestCrop": "pumpkin",
+            "allCrops": ["pumpkin","corn"],
+            "rainfall": "3.1%",
+            "soil": "moderate"
+    },
+    "July": {
+            "bestCrop": "Corriander",
+            "allCrops": ["peas","brocli","corriander"],
+            "rainfall": "4.2%",
+            "soil": "poor"
+    },
+    "August": {
+            "bestCrop": "peas",
+            "allCrops": ["peas","vegetables(tomato,brinjal)"],
+            "rainfall": "10.6%",
+            "soil ": "Decreasing"
+    },
+    "September": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "14.5%",
+            "soil": "variable"
+    },
+    "October": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "19.1%",
+            "soil": "variable"
+    },
+    "November": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "19.1%",
+            "soil": "Recovering"
+    },
+    "December": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "7.3%",
+            "soil": "variable"
+    },
+},
+        // Add more months' data for Bangalore Urban...
+    
+    "Mangalore": {
+        "January": {
+            "bestCrop": "wheat",
+            "allCrops": ["sunflower", "gram", "Wheat"],
+            "rainfall": "0.7%",
+            "soil": "variable"
+        },
+        "February": {
+            "bestCrop": "wheat",
+            "allCrops": ["sunflower", "gram", "Wheat"],
+            "rainfall": "0.6%",
+            "soil": "variable"
+        },
+        "March": {
+            "bestCrop": "sugarcane",
+            "allCrops": ["sugarcane","maize","groundnut"],
+            "rainfall": "2.0%",
+            "soil": "moderate"
+        },
+            "April": {
+            "bestCrop": "Maize",
+            "allCrops": ["sugarcane","maize","groundnut"],
+            "rainfall": "9.1%",
+            "soil": "moderate"
+        },
+        "May": {
+            "bestCrop": "cotton",
+            "allCrops": ["cotton","maize","jowar"],
+            "rainfall": "15.9%",
+            "soil": "Declining"
+        // Add more months' data for Mysore...
+        },
+        "June": {
+            "bestCrop": "cotton",
+            "allCrops": ["cotton","maize","jowar"],
+            "rainfall": "9.0%",
+            "soil": "decreasing"
+    },
+    "July": {
+            "bestCrop": "Rice",
+            "allCrops": ["rice","vegetables(tomato,brinjal)"],
+            "rainfall": "9.5%",
+            "soil": "variable"
+    },
+    "August": {
+            "bestCrop": "Rice",
+            "allCrops": ["rice","vegetables(tomato,brinjal)"],
+            "rainfall": "10.6%",
+            "soil ": "Decreasing"
+    },
+    "September": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "14.5%",
+            "soil": "variable"
+    },
+    "October": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "19.1%",
+            "soil": "variable"
+    },
+    "November": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "19.1%",
+            "soil": "Recovering"
+    },
+    "December": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "7.3%",
+            "soil": "variable"
+    },
+},
+    "Mysuru": {
+        "January": {
+            "bestCrop": "wheat",
+            "allCrops": ["sunflower", "gram", "Wheat"],
+            "rainfall": "0.7%",
+            "soil": "variable"
+        },
+        "February": {
+            "bestCrop": "wheat",
+            "allCrops": ["sunflower", "gram", "Wheat"],
+            "rainfall": "0.6%",
+            "soil": "variable"
+        },
+        "March": {
+            "bestCrop": "sugarcane",
+            "allCrops": ["sugarcane","maize","groundnut"],
+            "rainfall": "2.0%",
+            "soil": "moderate"
+        },
+            "April": {
+            "bestCrop": "Maize",
+            "allCrops": ["sugarcane","maize","groundnut"],
+            "rainfall": "9.1%",
+            "soil": "moderate"
+        },
+        "May": {
+            "bestCrop": "cotton",
+            "allCrops": ["cotton","maize","jowar"],
+            "rainfall": "15.9%",
+            "soil": "Declining"
+        // Add more months' data for Mysore...
+        },
+        "June": {
+            "bestCrop": "cotton",
+            "allCrops": ["cotton","maize","jowar"],
+            "rainfall": "9.0%",
+            "soil": "decreasing"
+    },
+    "July": {
+            "bestCrop": "Rice",
+            "allCrops": ["rice","vegetables(tomato,brinjal)"],
+            "rainfall": "9.5%",
+            "soil": "variable"
+    },
+    "August": {
+            "bestCrop": "Rice",
+            "allCrops": ["rice","vegetables(tomato,brinjal)"],
+            "rainfall": "10.6%",
+            "soil ": "Decreasing"
+    },
+    "September": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "14.5%",
+            "soil": "variable"
+    },
+    "October": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "19.1%",
+            "soil": "variable"
+    },
+    "November": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "19.1%",
+            "soil": "Recovering"
+    },
+    "December": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "7.3%",
+            "soil": "variable"
+    },
+    
+},
+"Udupi": {
+        "January": {
+            "bestCrop": "Cabbage",
+            "allCrops": ["Cabbage", "Cauliflower", "Carrot"],
+            "rainfall": "0.04",
+            "soil": "Fertile"
+        },
+        "February": {
+            "bestCrop": "Potatoes",
+            "allCrops": ["Potato", "radish", "Spinach"],
+            "rainfall": "0.3%",
+            "soil": "fertile"
+        },
+        "March": {
+            "bestCrop": "tomatoes",
+            "allCrops": ["tomatoes","bell peppers","green beans"],
+            "rainfall": "0.6%",
+            "soil": "fertile"
+        },
+            "April": {
+            "bestCrop": "Cucumbers",
+            "allCrops": ["Cucumbers","watermelon"],
+            "rainfall": "1.3%",
+            "soil": "moderate"
+        },
+        "May": {
+            "bestCrop": "okra",
+            "allCrops": ["okra","brinjal","basil"],
+            "rainfall": "4.1%",
+            "soil": "moderate"
+        // Add more months' data for Mysore...
+        },
+        "June": {
+            "bestCrop": "pumpkin",
+            "allCrops": ["pumpkin","corn"],
+            "rainfall": "3.1%",
+            "soil": "moderate"
+    },
+    "July": {
+            "bestCrop": "Corriander",
+            "allCrops": ["peas","brocli","corriander"],
+            "rainfall": "4.2%",
+            "soil": "poor"
+    },
+    "August": {
+            "bestCrop": "peas",
+            "allCrops": ["peas","vegetables(tomato,brinjal)"],
+            "rainfall": "10.6%",
+            "soil ": "Decreasing"
+    },
+    "September": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "14.5%",
+            "soil": "variable"
+    },
+    "October": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "19.1%",
+            "soil": "variable"
+    },
+    "November": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "19.1%",
+            "soil": "Recovering"
+    },
+    "December": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "7.3%",
+            "soil": "variable"
+    },
+},
+"Ballari": {
+        "January": {
+            "bestCrop": "Cabbage",
+            "allCrops": ["Cabbage", "Cauliflower", "Carrot"],
+            "rainfall": "0.04",
+            "soil": "Fertile"
+        },
+        "February": {
+            "bestCrop": "Potatoes",
+            "allCrops": ["Potato", "radish", "Spinach"],
+            "rainfall": "0.3%",
+            "soil": "fertile"
+        },
+        "March": {
+            "bestCrop": "tomatoes",
+            "allCrops": ["tomatoes","bell peppers","green beans"],
+            "rainfall": "0.6%",
+            "soil": "fertile",
+            "diseaseexpected":["leaf curl","bacterial wilt","Dampingoff"]
+        },   
+            "April": {
+            "bestCrop": "Cucumbers",
+            "allCrops": ["Cucumbers","watermelon"],
+            "rainfall": "1.3%",
+            "soil": "moderate",
+            "diseaseexpected":["cucumberwilt"]
+        },
+        "May": {
+            "bestCrop": "okra",
+            "allCrops": ["okra","brinjal","basil"],
+            "rainfall": "4.1%",
+            "soil": "moderate"
+        // Add more months' data for Mysore...
+        },
+        "June": {
+            "bestCrop": "pumpkin",
+            "allCrops": ["pumpkin","corn"],
+            "rainfall": "3.1%",
+            "soil": "moderate"
+    },
+    "July": {
+            "bestCrop": "Corriander",
+            "allCrops": ["peas","brocli","corriander"],
+            "rainfall": "4.2%",
+            "soil": "poor"
+    },
+    "August": {
+            "bestCrop": "peas",
+            "allCrops": ["peas","vegetables(tomato,brinjal)"],
+            "rainfall": "10.6%",
+            "soil ": "Decreasing"
+    },
+    "September": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "14.5%",
+            "soil": "variable"
+    },
+    "October": {
+            "bestCrop": "Sunflower",
+            "allCrops": ["Sunflowewr","Groundnut","Vegetables(cabbage,cauliflower)"],
+            "rainfall": "19.1%",
+            "soil": "variable"
+    },
+    "November": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "19.1%",
+            "soil": "Recovering"
+    },
+    "December": {
+            "bestCrop": "Ragi",
+            "allCrops": ["ragi","pulses(tur dal,green gram)"],
+            "rainfall": "7.3%",
+            "soil": "variable"
+        },
+    },
+};
+var cropData = cropsData[district][month];
+            if (cropData) {
+                document.getElementById("bestCrop").innerHTML = "Best Crop: " + cropData.bestCrop;
+                document.getElementById("allCrops").innerHTML = "Available Crops: " + cropData.allCrops.join(", ");
+                document.getElementById("rainfall").innerHTML = "Rainfall: " + cropData.rainfall;
+                document.getElementById("soil").innerHTML = "Soil Fertility: " + cropData.soil ;
+                document.getElementById("sustainability").innerHTML = "Sustainability: Sustainable";
+                document.getElementById("diseaseexpected").innerHTML = "diseaseexpected:" + cropData.diseaseexpected;
+            } else {
+                document.getElementById("bestCrop").innerHTML = "Best Crop: Not Available";
+                document.getElementById("allCrops").innerHTML = "Available Crops: Not Available";
+                document.getElementById("rainfall").innerHTML = "Rainfall: Not Available";
+                document.getElementById("soil ").innerHTML = "Soil Fertility: Not Available";
+                document.getElementById("sustainability").innerHTML = "Sustainability: Not Sustainable";
+                document.getElementById("diseaseexpected").innerHTML = "diseaseexpected: Not available"
+            }
+        }
+
+        const apiKey = '89d41042281db65ae3e4c03a7bf6c437';
+
+        async function checkWeather() {
+            var selectedDistrict = document.getElementById("district").value;
+            var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${selectedDistrict},IN&appid=${apiKey}`;
+
+            // Use fetch API to get weather data from the OpenWeatherMap API
+            await fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var resultDiv = document.getElementById("results");
+                    var rainfallPercentage = data.weather[0].main;
+                    console.log(data);
+                    resultDiv.innerHTML = `<h2>Weather Information</h2><p>Weather condition: ${rainfallPercentage}</p>`;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                    var resultDiv = document.getElementById("results");
+                    resultDiv.innerHTML = `<h2>Weather Information</h2><p>Error: Unable to fetch weather data</p>`;
+                });
+        }
+    </script>
+</body>
+
+</html>

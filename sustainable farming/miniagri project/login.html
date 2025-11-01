@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    
+    <script src="https://kit.fontawesome.com/d55d4660c7.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    .container{
+    width:100%;
+    height: 100vh;
+    background-image: url(https://balchem.com/plant-nutrition/wp-content/uploads/sites/4/2021/02/Balchem-plant-nutrittion-field-crops.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+
+}
+.form{
+    width:70%;
+    max-width: 300px;
+    position: relative;
+    transform: scale(2);
+    left:50%;
+    bottom:35%;
+    transform: translate(-50%,50%);
+    padding:40px 50px 55px;
+    text-align: center;
+    background: linear-gradient(
+        to top,
+        #B99470,
+        bisque,
+        #DBCC95
+
+    );
+    border-radius: 20px;
+}
+.form h1{
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #65B741;
+    position: relative;
+}
+.form h1::after{
+    content:'';
+    width:30px;
+    height:4px;
+    border-radius: 3px;
+    background:#65B741 ;
+    position: absolute;
+    bottom:-12px;
+    left:50%;
+    transform:translateX(-50%);
+     
+}
+
+.input-field{
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+
+}
+input{
+    width: 100%;
+    background: transparent;
+    border:0;
+    outline: 0;
+    padding:18px 15px;
+
+}
+.input-field i{
+    margin-left:15px;
+    color: #65B741;
+
+    
+}
+form p{
+    text-align: left;
+    font-size: 17px;
+    font-weight: 500;
+
+}
+form p a{
+    text-decoration: none;
+    color: black;
+}
+.btn-field{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+.btn-field button{
+    flex-basis: 48%;
+    background: #65B741;
+    color:black;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition:background 1s;
+}
+ .loggedin button {
+    flex-basis: 48%;
+    width: 50%;
+    background: #65B741;
+    color:black;
+    font-size: 20px;
+    font-weight: 500;
+    height:40px;
+    padding:10px 20px 10px;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: .5s;
+}
+.loggedin button:hover{
+    width:50%;
+    background: black;
+    color:white;
+}
+
+
+
+.input-grp{
+    height:230px;
+}
+.btn-field button.disable{
+    background: #eaeaea;
+    color:black;
+}
+
+</style>
+
+
+<body>
+    <div class="container">
+        <div class="form">
+            <h1 id="title">signup</h1>
+            <form>
+                <div class="input-grp">
+                    <div class="input-field" id="namefield">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Name">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="password" placeholder="password">
+                    </div>
+                    <p>Forgot password ?<a href="#">Click Here!</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="signupbtn">sign up</button>
+                    <button type="button" id="loginbtn" class="disable">Log in</button>
+                </div>
+
+                <div class="loggedin">
+                    <button type="button" id="submitBtn">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <script>
+        let signupBtn = document.getElementById("signupbtn");
+        let loginBtn = document.getElementById("loginbtn");
+        let nameField = document.getElementById("namefield");
+        let title = document.getElementById("title");
+        let submitBtn = document.getElementById("submitBtn")
+
+        loginBtn.onclick = function(){
+            nameField.style.maxHeight = "0";
+            title.innerHTML="Log in";
+            signupBtn.classList.add("disable");
+            loginBtn.classList.remove("disable");
+            
+        
+}
+        signupBtn.onclick = function(){
+            nameField.style.maxHeight = "60px";
+            title.innerHTML="sign up";
+            signupBtn.classList.remove("disable");
+            loginBtn.classList.add("disable");
+        
+}
+        submitBtn.onclick = function(){
+            window.location.href = "index.html";
+
+
+
+        }
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

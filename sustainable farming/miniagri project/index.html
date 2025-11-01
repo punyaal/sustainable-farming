@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivation Suitability Checker</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+     rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    body{
+        background: linear-gradient(
+            to right,
+            #65B741,
+            bisque,
+            #9ADE7B
+        )
+    
+}
+
+
+
+
+.header{
+    position: relative  ;
+    text-decoration: none;
+    align-items: right;
+    top:0;
+    left:0;
+    width:100%;
+    padding:10px 10px 10px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+
+}
+
+.logo{
+    font-size: 2.2rem;
+    color: black;
+    font-weight: 600;
+    margin-left: -10%;
+    align-items: left;
+    margin-left: 10;
+    text-decoration: none;
+    display: flex;
+}
+.navbar a{
+    font-size: 1.2rem;
+    
+    color:#65B741;
+    font-weight: bold;
+    margin-left: 3.5rem;
+    transition: .3s;
+    text-decoration: none;
+} 
+.navbar a:hover{
+    
+    background: black;
+    color:white;
+    padding: 10px;
+    border-radius: 20px;
+} 
+
+
+.container h1{
+    font-family: 'Raleway', sans-serif;
+}
+.container p{
+     font-weight:700 ;
+     letter-spacing: 1px;
+     line-height: 1.8;
+     max-width: 90%;
+
+}
+.container img{
+    border-radius: 2.5rem;
+
+}
+.about h1{
+    text-align: center;
+    background: black;
+    color:white;
+    font-size: 3rem;
+    border-radius: 1.5rem;
+    width:30%;
+    margin-top:3rem;
+    padding:10px 10px;
+}
+.about p{
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    font-size: 1.5rem;
+    padding:20px 30px 20px;
+    font-weight:500;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<center>
+<body>
+
+        <header class="header">
+            <img src="https://pngimg.com/uploads/wheat/wheat_PNG27.png" alt="pic" height="50" >
+            <a href="#" class="logo">Sustainable Farming</a>
+    
+            <div class="bx bx-menu" id="menu"></div>
+    
+          <nav class="navbar"> 
+            <a href="#home" >Home</a>
+            <a href="#About">About</a>
+            <a href="#faq">Sustainability checker</a>
+            <a href="#Contact">Contact</a>
+        </nav>
+        </header>
+
+        <hr>
+
+<!--Home page starts-->
+<div class="container ml-5 mr-5 mb-0 mt-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="https://www.agrifarming.in/wp-content/uploads/2020/06/Comp2-21.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Sustainable farming aided by data analytics</h1>
+          <p class="lead">"Every crop tells a story of a farmer's resilience, patience, and connection to the land. Their hands sow the seeds, but their hearts reap the harvest."</p>
+          <div class=" btn d-grid gap-2 d-md-flex justify-content-md-start">
+            
+            <button type="button" id="checkerBtn" class="btn btn-dark btn-lg px-4" fdprocessedid="bp9oco">Sustainable checker</button>
+            <button type="button" id="trendBtn" class="btn btn-dark btn-lg px-4" fdprocessedid="bp9oco">Trend Analysis</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--Home page ends-->
+
+<!--about section starts-->
+
+<section class="about" id="About">
+    <div><h1>About us</h1></div>
+    <p> Welcome to Sustainable Farming, We're passionate about merging data analytics with sustainable farming practices. 
+        Our mission is to empower farmers with advanced insights to optimize yields while prioritizing environmental conservation. 
+        Through cutting-edge technology, we're committed to revolutionizing agriculture for a more sustainable future.</p>
+    
+</section>
+
+
+
+  
+</body>
+
+
+
+
+
+
+
+
+    <script>
+        let checkerBtn  = document.getElementById("checkerBtn");
+        let trendBtn  = document.getElementById("trendBtn");
+
+
+        checkerBtn.onclick = function(){
+            window.location.href = "checker.html";
+        }
+        trendBtn.onclick = function(){
+            window.location.href = "trend.html";
+        }
+    </script>
+
+</html>
